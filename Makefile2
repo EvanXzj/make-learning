@@ -1,0 +1,17 @@
+# clear data shell
+.PHONY: clean cleanRedis cleanPg
+
+USER=username
+HOST=hostname
+PORT=5432
+DBNAME=dbname
+
+clean: cleanRedis cleanPg
+
+promt: 
+
+cleanRedis: 
+	ssh service@host "echo 'flushall' | redis-cli -h ${HOST} -p ${PORT}; echo $?"
+
+cleanPg: 
+	export PGPASSWORD=passwd; psql -U ${USER} -h ${HOST} -p ${PORT} -d ${DBNAME} -w  -f ./shell.sql
