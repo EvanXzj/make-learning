@@ -8,8 +8,6 @@ DBNAME=dbname
 
 clean: cleanRedis cleanPg
 
-promt: 
-
 cleanRedis: 
 	ssh service@host "echo 'flushall' | redis-cli -h ${HOST} -p ${PORT}; echo $?"
 
